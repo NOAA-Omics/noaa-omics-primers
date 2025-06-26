@@ -22,3 +22,5 @@ Bacteria-16S-V3V4-806R	Prokaryota	Bacteria | Archaea | chloroplasts | mitochondr
 Bacteria-16S-V3V4-806RB	Prokaryota	Bacteria | Archaea | chloroplasts | mitochondria	16S rRNA (SSU prokaryote)	V3-V4		ACTCCTACGGGAGGCAGCAG	GGACTACNVGGGTWTCTAAT	
 Bacteria-16S-V4-EMP	Prokaryota	Bacteria | Archaea | chloroplasts | mitochondria	16S rRNA (SSU prokaryote)	V4	291	GTGYCAGCMGCCGCGGTAA	GGACTACNVGGGTWTCTAAT	
 Bacteria-16S-V4V5-Parada	Prokaryota	Bacteria | Archaea | chloroplasts | mitochondria	16S rRNA (SSU prokaryote)	V4-V5	336 | 486	GTGYCAGCMGCCGCGGTAA	CCGYCAATTYMTTTRAGTTT	https://github.com/aomlomics/protocol-pcr-ssu16sv4v5-parada
+12S-MarVer1-Valsecchi	Marine vertebrates	Also captures some invertebrates	12S rRNA (SSU mitochondria)	V5-V6	202	CGTGCCAGCCACCGCG	GGGTATCTAATCCYAGTTTG	https://doi.org/10.1002/edn3.72
+16S-MarVer3-Valsecchi	Marine vertebrates	Also captures some invertebrates	16S rRNA (LSU mitochondria)		245	AGACGAGAAGACCCTRTG	GGATTGCGCTGTTATCCC	https://doi.org/10.1002/edn3.72

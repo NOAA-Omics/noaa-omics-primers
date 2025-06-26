@@ -45,3 +45,7 @@ ACAGTCCTCTAAATTACAACTAGGAGAATA	Octo-eDNA-Mut2R	Octo_eDNA_Mut2R	https://doi.org/1
 GCAGTCTTCTAAATTGCAACCGGGAGAATA	Octo-eDNA-MutS-Paragorgia		missing: not provided	reverse
 AKGGAAACGAATGGRCTMAG	Scler-28S-eDNA-F	Scler-28S-eDNA-F	https://doi.org/10.7717/peerj.18607	forward
 TCCTTGGTCCGTGTTTCAAG	Scler-28S-eDNA-R	Scler-28S-eDNA-R	https://doi.org/10.7717/peerj.18607	reverse
+CGTGCCAGCCACCGCG  12S-MarVer1-F MarVer1F  https://doi.org/10.1002/edn3.72
+GGGTATCTAATCCYAGTTTG  12S-MarVer1-R  MarVer1R  https://doi.org/10.1002/edn3.72
+AGACGAGAAGACCCTRTG  16S-MarVer3-F  MarVer3F  https://doi.org/10.1002/edn3.72
+GGATTGCGCTGTTATCCC  16S-MarVer3-R  MarVer3R  https://doi.org/10.1002/edn3.72
