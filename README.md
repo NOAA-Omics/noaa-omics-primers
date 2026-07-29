@@ -6,11 +6,9 @@ Metabarcoding assays used for DNA metabarcoding by NOAA 'Omics researchers, usin
 
 An assay is defined by the unique combination of forward and reverse PCR primers, which have fixed data associated with them (taxonomic target, gene, subfragment, amplicon size, primer sequences, primer names, and primer references).
 
-- [assays.tsv](https://github.com/NOAA-Omics/noaa-omics-metabarcoding-assays/blob/main/assays.tsv): Lists all assays fully documented and approved to work with Ocean DNA Explorer.
-- [assays_wilderlab.tsv](https://github.com/NOAA-Omics/noaa-omics-metabarcoding-assays/blob/main/assays_wilderlab.tsv): Lists additional assays provided by Wilderlab that are not fully documented (missing information) and are not approved to work with Ocean DNA Explorer.
-- [testprime.tsv](https://github.com/NOAA-Omics/noaa-omics-metabarcoding-assays/blob/main/testprime.tsv): Provides Arb Silva TestPrime results to determine taxonomic scope of assays (primer pairs).
+The file [assays.tsv](https://github.com/NOAA-Omics/noaa-omics-metabarcoding-assays/blob/main/assays.tsv) lists all assays fully documented and approved to work with Ocean DNA Explorer.
 
-The assay fields are described here:
+Assay field descriptions:
 
 - `assay_name`: A brief, concise identifier for the assay with no spaces or special characters, ensuring machine readability. Must be unique. Suggest including the targeted taxonomic group, gene, subfragment (if applicable), and author or commonly used name of assay. Source: [FAIRe](https://github.com/FAIR-eDNA/FAIRe_checklist).
 - `assay_name_alternate`: Other names the assay may be called.
