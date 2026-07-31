@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import argparse
+import math
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MultipleLocator
 import pandas as pd
 
 
@@ -37,6 +39,7 @@ def read_lengths_from_folder(folder: Path) -> pd.Series:
 def compute_stats(folder_name: str, lengths: pd.Series) -> pd.Series:
 	"""Compute describe() statistics and add the folder label."""
 	desc = lengths.describe()
+	desc["median"] = desc["50%"]
 	desc["folder"] = folder_name
 	return desc
 
@@ -44,7 +47,7 @@ def compute_stats(folder_name: str, lengths: pd.Series) -> pd.Series:
 def plot_kde_panels(folder_lengths: list[tuple[str, pd.Series]], output_png: Path) -> None:
 	"""Plot one KDE panel per folder in a single-column layout."""
 	panel_count = len(folder_lengths)
-	fig, axes = plt.subplots(panel_count, 1, figsize=(11, max(2.5 * panel_count, 4)), sharex=True)
+	fig, axes = plt.subplots(panel_count, 1, figsize=(11, max(2.5 * panel_count, 4)), sharex=False)
 
 	if panel_count == 1:
 		axes = [axes]
@@ -52,11 +55,12 @@ def plot_kde_panels(folder_lengths: list[tuple[str, pd.Series]], output_png: Pat
 	all_lengths = pd.concat([lengths for _, lengths in folder_lengths], ignore_index=True)
 	x_min = float(all_lengths.min())
 	x_max = float(all_lengths.max())
-	if x_min == x_max:
-		x_pad = 1.0
-	else:
-		x_pad = (x_max - x_min) * 0.02
-	shared_xlim = (x_min - x_pad, x_max + x_pad)
+	x_lower = 50 * math.floor(x_min / 50)
+	x_upper = 50 * math.ceil(x_max / 50)
+	if x_lower == x_upper:
+		x_lower -= 50
+		x_upper += 50
+	shared_xlim = (x_lower, x_upper)
 
 	for ax, (folder_name, lengths) in zip(axes, folder_lengths):
 		if lengths.nunique() > 1:
@@ -76,9 +80,7 @@ def plot_kde_panels(folder_lengths: list[tuple[str, pd.Series]], output_png: Pat
 		ax.set_xlabel("ASV length (bp)")
 		ax.set_ylabel("Density")
 		ax.set_xlim(shared_xlim)
-		ax.tick_params(axis="x", which="both", labelbottom=True)
-		for tick_label in ax.get_xticklabels():
-			tick_label.set_visible(True)
+		ax.xaxis.set_major_locator(MultipleLocator(50))
 
 	fig.tight_layout()
 	fig.savefig(output_png, dpi=300)
@@ -131,9 +133,14 @@ def main() -> None:
 	if not rows:
 		raise SystemExit("No numeric values found in column 2 across discovered folders.")
 
+	folder_lengths.sort(key=lambda item: item[1].median())
+	rows.sort(key=lambda row: row["median"])
+
 	stats_df = pd.DataFrame(rows)
 	first_col = stats_df.pop("folder")
 	stats_df.insert(0, "folder", first_col)
+	median_col = stats_df.pop("median")
+	stats_df.insert(stats_df.columns.get_loc("50%") + 1, "median", median_col)
 	stats_df.to_csv(args.stats_out, sep="\t", index=False)
 
 	plot_kde_panels(folder_lengths, args.plot_out)
